@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* LAYOUT */
+.app {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 220px;
+  background: #020617;
+  padding: 20px;
+  height: 100vh;
+  border-right: 1px solid #1e293b;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar p {
+  color: #94a3b8;
+  margin: 10px 0;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* HEADER */
+.header h1 {
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* FORM */
+.form input,
+.form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: none;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+/* BUTTON */
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background: #22c55e;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* RESULTS */
+.highlight {
+  margin-top: 10px;
+  color: #22c55e;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.stat {
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.green {
+  background: #16a34a;
+}
+
+.blue {
+  background: #2563eb;
+}
+
+.purple {
+  background: #7c3aed;
+}
+
+/* SCENARIOS */
+.scenarios {
+  margin-top: 25px;
+}
+
+.scenarios ul {
+  padding-left: 20px;
+}
