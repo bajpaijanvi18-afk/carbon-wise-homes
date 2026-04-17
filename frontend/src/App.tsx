@@ -1,3 +1,6 @@
+import { useState } from "react";
+import "./App.css";
+
 function App() {
   const [data, setData] = useState<any>(null);
 
@@ -14,55 +17,50 @@ function App() {
     const emissions = formData.area * 0.5;
     const score = Math.max(0, 100 - emissions);
 
-    // ✅ SAVE TO BACKEND
+    // ✅ SEND TO BACKEND
     fetch("https://carbon-wise-homes.onrender.com/save", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         building_type: formData.type,
         area: formData.area,
         emissions: emissions,
-        score: score
-      })
+        score: score,
+      }),
     })
-      .then(res => res.json())
-      .then(resData => {
-        console.log("Saved:", resData);
-      })
-      .catch(err => console.error(err));
+      .then((res) => res.json())
+      .then((resData) => console.log("Saved:", resData))
+      .catch((err) => console.error(err));
 
     // ✅ UPDATE UI
     setData(formData);
   };
 
-  const emissions = data ? (data.area * 0.5) : 0;
+  const emissions = data ? data.area * 0.5 : 0;
 
   return (
     <div className="app">
-
       {/* SIDEBAR */}
       <aside className="sidebar">
-        <h2>🌱 EcoCalc</h2>
+        <h2>EcoCalc</h2>
+        <p style={{ fontSize: "12px", color: "#777" }}>
+          Carbon Dashboard
+        </p>
         <nav>
           <p>Dashboard</p>
           <p>Calculator</p>
-
         </nav>
       </aside>
 
       {/* MAIN */}
       <main className="main">
-
-        {/* HEADER */}
         <div className="header">
           <h1>Carbon Emission Calculator</h1>
         </div>
 
-        {/* TOP GRID */}
         <div className="grid">
-
           {/* FORM */}
           <form className="card form" onSubmit={handleSubmit}>
             <h3>Building Details</h3>
@@ -86,7 +84,6 @@ function App() {
               <option>Summer ☀️</option>
               <option>Winter ❄️</option>
               <option>Monsoon 🌧️</option>
-
             </select>
 
             <button>Calculate</button>
@@ -106,13 +103,11 @@ function App() {
               </h2>
             </div>
           )}
-
         </div>
 
         {/* STATS */}
         {data && (
           <div className="stats">
-
             <div className="stat green">
               <h4>Emissions</h4>
               <p>{emissions.toFixed(2)}</p>
@@ -127,15 +122,13 @@ function App() {
               <h4>Efficiency</h4>
               <p>Moderate</p>
             </div>
-
           </div>
         )}
 
-        {/* WHAT-IF SCENARIOS */}
+        {/* SCENARIOS */}
         {data && (
           <div className="card scenarios">
             <h3>What-If Scenarios</h3>
-
             <ul>
               <li>🌞 Solar Panels → reduce 20%</li>
               <li>💡 LED Lighting → reduce 10%</li>
@@ -144,7 +137,6 @@ function App() {
             </ul>
           </div>
         )}
-
       </main>
     </div>
   );
