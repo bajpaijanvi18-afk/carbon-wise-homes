@@ -10,6 +10,4 @@
     "express": "^4.18.2",
     "sqlite3": "^5.1.6"
   }
-}git add .
-git commit -m "fix backend for deployment"
-git push
+}
