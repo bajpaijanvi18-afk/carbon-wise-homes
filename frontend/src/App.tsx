@@ -1,6 +1,3 @@
-import { useState } from "react";
-import "./App.css";
-
 function App() {
   const [data, setData] = useState<any>(null);
 
@@ -8,11 +5,36 @@ function App() {
     e.preventDefault();
     const form = e.target;
 
-    setData({
+    const formData = {
       type: form.type.value,
       area: Number(form.area.value),
       season: form.season.value,
-    });
+    };
+
+    const emissions = formData.area * 0.5;
+    const score = Math.max(0, 100 - emissions);
+
+    // ✅ SAVE TO BACKEND
+    fetch("https://carbon-wise-homes.onrender.com/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        building_type: formData.type,
+        area: formData.area,
+        emissions: emissions,
+        score: score
+      })
+    })
+      .then(res => res.json())
+      .then(resData => {
+        console.log("Saved:", resData);
+      })
+      .catch(err => console.error(err));
+
+    // ✅ UPDATE UI
+    setData(formData);
   };
 
   const emissions = data ? (data.area * 0.5) : 0;
